@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "target": "ESNext", //target - define qual versão o TS será compilado, exemplo es2016 compila pro js da versão de 2016 caso precise de transformar em um código mais antigo, como se fosse um Babel. Em geral vamos usar o ESNext que pega a versão mais atual do JS.
+    "strict": true //strict - tem varias configs incluidas mas dentre elas é colocar erro caso um dado não tenha um tipo, ou seja, ser do tipo any
+  }
+}
