@@ -18,4 +18,6 @@ function falarNome(nome) {
 //ou seja, eliminou o que era TS. (:string)
 // pra não ter que ficar dando o comando tsc arquivo.ts no terminal toda hora que quiser compilar, podemos criar uma config inicial usando o: tsc --init
 //tsc --init vai criar um arquivo chamado tsconfig.json, onde podemos usar nossas configs. Depois disso basta escrever tsc na cli que ele vai pegar todos os arquivos .ts e compilar usando as configs que definimos.
+//obs: caso tenha instalado localmente o comando é: npx tsc
+// usando o: tsc -w, é dizer watch, ele fica rodando e compilando ao vivo. como se fosse um npm run dev
 //obs: olhar tsconfig.json
