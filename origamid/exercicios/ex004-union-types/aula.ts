@@ -1,7 +1,11 @@
 // - Union Types
 // É comum termos funções que podem retornar ou receber tipos diferentes. Para isso usamos a barra vertical string | number | boolean.
 
-const total2: number | string = 300;
+let total2 = 300;
+total2 = "200"; //O tipo 'string' não pode ser atribuído ao tipo 'number'.ts(2322)
+
+let total3: number | string = 300;
+total3 = "200"; // não gera erro pois foi definido que poderia ser number ou string
 
 // - Funções
 // Funções podem receber parâmetros com diferentes tipos e também podem retornar diferentes tipos de dados.
