@@ -4,5 +4,5 @@
     "strict": true, //strict - tem varias configs incluidas mas dentre elas é colocar erro caso um dado não tenha um tipo, ou seja, ser do tipo any
     "noEmitOnError": false
   }
-  // "include": ["origamid/exercicios/ex003-annotation-e-inference/**/*"]
+  // "include": ["origamid/exercicios/ex017-functions/**/*"]
 }
