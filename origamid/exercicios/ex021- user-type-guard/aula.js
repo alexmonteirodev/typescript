@@ -45,3 +45,29 @@ function handleData(data) {
 //é como se vc já desse um predict, falasse, olha, eu sei que vc não executa js, mas coloca que quando executar aqui vai ser string e me da o autocomplete pra continuar. Para fazer isso, tem que garantir que a type guard está correta poque se fosse o caso de verificar uma string e vc passa que vai ser um number o TS não onsegue indentificar porque não vai executar o JS e não vai acusar erro e o site vai quebrar.
 //obs: lembrando que o is tem que retornar um valor boolean, entao caso vc use um if na type guard e não coloque um else, ela vai poder retornar null e vai dar erro porque is tem que retornar true or false e não true or null, logo, tem que ter um else com return false.
 //lembrar: se ta falando de is, a function retorna boolean
+// - Objetos
+// O Type Predicate pode ser especialmente utilizado para criarmos Type Guards para objetos específicos e garantirmos a Type Safety (segurança) do projeto.
+async function fetchDeAlgo() {
+    const response = await fetch("https://api.origamid.dev/json/notebook.json");
+    const json = await response.json();
+    handleFetchDeAlgo(json);
+}
+fetchDeAlgo();
+//repare que para acessar a data em handleFetchDeAlgo, é necessário fazer uma verificação se a data (unknown) que rebemos tem a interface que esejamos (ProdutoDeAlgo), mas não da pra fazer uma verificação como if(data instanceof ProdutoDeAlgo) porque não é uma class para ter instancia, então temos que usar o type predicate, para retornar true de uma verificação e seguir o código.
+function isProdutoDeAlgo(value) {
+    if (value &&
+        typeof value === "object" &&
+        "nome" in value &&
+        "preco" in value) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+function handleFetchDeAlgo(data) {
+    if (isProdutoDeAlgo(data)) {
+        console.log(data.nome);
+    }
+}
+//repare que há uma confiança do TS no que vc faz tbm então, como vc disse que nome é uma string na interface ProdutoDeAlgo, o TS vai disponibilizar métodos de string em data.nome, mas se vc colocar que nome é um number, o TS vai disponibilizar métodos de number, logo, vc tem que ter certeza do que está fazendo no predicate. Caso queira ter segurança total de que nome é uma string, poderia fazer uma verificação extra dentro de   if (isProdutoDeAlgo(data)), com typeof data.nome === 'string'.
