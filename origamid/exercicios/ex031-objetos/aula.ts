@@ -60,3 +60,65 @@ function mostrarQuantidade(produto: Partial<Produto2>) {
 
 // - [key: string]: unknown;
 // Podemos definir que um objeto poderá conter propriedades/métodos além dos que foram definidos inicialmente.
+// basicamente, podemos adicionar metodos/propiedades a mais em uma interface:
+
+interface Post {
+  titulo: string;
+  visualizacoes: number;
+  tags: string[];
+}
+
+const artigo: Post = {
+  titulo: "como aprender HTML",
+  visualizacoes: 3000,
+  tags: ["HTML", "Front End"],
+  autor: "André", //O literal de objeto pode especificar apenas propriedades conhecidas e 'autor' não existe no tipo 'Post'.
+};
+
+// Ao add uma propriedade nova, o TS me gera um erro porque autor não existe em Post, porém podemos adicionar na interface Post um jeito que o TS para de gerar esse erro. Obs: TS não vai gerar o autocomplete mas para de dar erro:
+
+interface Post2 {
+  titulo: string;
+  visualizacoes: number;
+  tags: string[];
+  [key: string]: unknown;
+}
+
+const artigo2: Post2 = {
+  titulo: "como aprender HTML",
+  visualizacoes: 3000,
+  tags: ["HTML", "Front End"],
+  autor: "André", //O literal de objeto pode especificar apenas propriedades conhecidas e 'autor' não existe no tipo 'Post'.
+};
+
+// Problema, que agora tenho acesso ao artigo2.autor, porém se eu colocar autor.tamanduá, tambem me deixaria porque o TS não lê a key. Como o TS não sabe o que é e se trada de unknown, temos que fazer a verificação com o if e o typeof para o TS liberar o autocomplete.
+
+// - Record (utility type)
+// O Record define a interface de um Objeto que possui <chave, tipo>. Pode ser usado para definir a interface de um Objeto Literal genérico.
+//o ideal é evitar o record e definir a interface. o Record é só pra ter uma melhor maleabilidade quando não sabemos o tipo de interface esperar.
+type ObjetoLiteral1 = {
+  [key: string]: unknown;
+};
+
+type ObjetoLiteral2 = Record<string, unknown>;
+
+function mostrarTitulo(obj: ObjetoLiteral2) {
+  if ("titulo" in obj) {
+    console.log(obj.titulo);
+  }
+}
+
+// Erros:
+// mostrarTitulo("string");
+// mostrarTitulo(200);
+// mostrarTitulo([1, 2]);
+// mostrarTitulo(null);
+// mostrarTitulo(undefined);
+mostrarTitulo({
+  titulo: "André",
+});
+
+// - Utility Types
+// Lista completa dos utility types.
+
+// https://www.typescriptlang.org/docs/handbook/utility-types.html
