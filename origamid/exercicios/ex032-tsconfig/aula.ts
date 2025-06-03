@@ -56,6 +56,7 @@
 //     "allowJs": true,
 //     "removeComments": true,
 //     "noImplicitReturns": true,
+//     "isolatedModules": true,
 //     "outDir": "dist"
 //   },
 //   "include": ["src"],
