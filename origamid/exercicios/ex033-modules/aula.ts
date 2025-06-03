@@ -1,4 +1,5 @@
 // - module
+//sempre lembrar: tem export ou import é type module, senão é global.
 // Se usarmos o import/export em qualquer momento em um arquivo .ts, o TypeScript irá tratar o mesmo como o module. Consequentemente, o seu escopo não será mais global.
 // para ser global, basta criar o arquivo global.ts, (repare se foi gerado o global.js) e chamar o script no html antes do script main, assim, terá acesso ao que for escrito no global.ts
 //um arquivo global é bom para definirmos interfaces que queremos reaproveitar, link de url e etc, tudo que for ser reaproveitado.
